@@ -20,7 +20,7 @@
 
 		// on every message recived we print the new datas inside the #broadcast-msg div
 		socket.on('broadcast_tweet', function (data) {
-		    console.log(data);
+
 		    var msg =
 		            '<li id="' + data.id + '">' +
 		                    '<span class="image">' +
