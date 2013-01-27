@@ -1,0 +1,46 @@
+<html>
+<body>
+<h1>tWEET-wALL</h1>
+
+<ul id="broadcast-msg"></ul>
+
+<!-- Include the socket.io javascript on the client side -->
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+<script>
+
+    // Establish the connection with the server
+    var socket = io.connect('http://localhost:8000');
+
+    // on every message recived we print the new datas inside the #broadcast-msg div
+    socket.on('broadcast_msg', function (data) {
+        console.log(data);
+        //this can be a template
+        var msg =
+                '<li id="' + data.id_str + '">' +
+                        '<span class="image">' +
+                        '<img src="' + data.user.profile_image_url + '"/>' +
+                        '</span>' +
+                        '<span class="text">' + data.text + '</span>' +
+                        '<span class="screenName">' + ' @' + data.user.screen_name + '	' + '</span>' +
+                        '<span class="button">Ekle</span>' +
+                        '</li>';
+
+        $('#broadcast-msg').prepend(msg);
+
+    });
+
+    // Create a new socket connection
+    socket.on('connect', function () {
+        $(document)
+        	.on("click", ".button", function () {
+		            var parent = $(this).parent()[0];
+		            var node = $(parent);
+		            socket.emit('emit_msg', node.context.id);
+		        }
+	        );
+    });
+</script>
+</body>
+</html>
