@@ -46,7 +46,7 @@ io.sockets.on('connection', function (socket) {
 		//io.sockets.volatile.emit('broadcast_msg', disconnected_msg);
     });
 
-    twit.stream('statuses/filter', {'track':'BenceBirgün'}, function (stream) {
+    twit.stream('statuses/filter', {'track':'DumanDeyince'}, function (stream) {
         stream.on('data', function (data) {
             if (data.id_str) {
                 client.hset(data.id_str, "image", data.user.profile_image_url, redis.print);
@@ -54,8 +54,8 @@ io.sockets.on('connection', function (socket) {
                 client.hset(data.id_str, "screenName", data.user.screen_name, redis.print);
                 client.hset(data.id_str, "data", data, redis.print);
 
-                client.hset('tweets', data.id_str, 'N', redis.print);
-                socket.emit('broadcast_msg', data);
+                client.lpush('tweets', data.id_str, redis.print);
+                io.sockets.volatile.emit('broadcast_msg', data);
             }
         });
     });
