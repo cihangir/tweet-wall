@@ -15,7 +15,6 @@
 
     // on every message recived we print the new datas inside the #broadcast-msg div
     socket.on('broadcast_msg', function (data) {
-        console.log(data);
         //this can be a template
         var msg =
                 '<li id="' + data.id_str + '">' +
@@ -24,7 +23,7 @@
                         '</span>' +
                         '<span class="text">' + data.text + '</span>' +
                         '<span class="screenName">' + ' @' + data.user.screen_name + '	' + '</span>' +
-                        '<span class="button">Ekle</span>' +
+                        '<span class="button">Approve</span>' +
                         '</li>';
 
         $('#broadcast-msg').prepend(msg);
