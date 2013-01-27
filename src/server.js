@@ -24,6 +24,8 @@ io.sockets.on('connection', function (socket) {
         client.hget(id, "image", function (err, image) {
                 client.hget(id, "text", function (err, text) {
                         client.hget(id, "screenName", function (err, screenName) {
+                        client.lpush("approvedTweets", id);
+                        client.lrem('tweets', 0, id, redis.print);
                                 io.sockets.volatile.emit('broadcast_tweet',
                                     {
                                         id : id,
