@@ -1,0 +1,40 @@
+<html>
+	<body>
+	<h1>Welcome to Tweet-Wall</h1>
+
+	<ul id="broadcast-msg"></ul>
+
+	<!-- Include the socket.io javascript on the client side -->
+	<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+
+	<script>
+
+		// Establish the connection with the server
+		var socket = io.connect('http://localhost:8000');
+
+		// Create a new socket connection
+		socket.on('connect', function () {
+			console.log("Connected to System")
+		});
+
+		// on every message recived we print the new datas inside the #broadcast-msg div
+		socket.on('broadcast_tweet', function (data) {
+		    console.log(data);
+		    var msg =
+		            '<li id="' + data.id + '">' +
+		                    '<span class="image">' +
+		                    '<img src="' + data.image + '"/>' +
+		                    '</span>' +
+		                    '<span class="text">' + data.text + '</span>' +
+		                    '<span class="screenName">' + ' @' + data.screenName + '	' + '</span>' +
+		                    '</li>';
+
+		    $('#broadcast-msg').prepend(msg);
+		});
+
+
+	</script>
+	</body>
+</html>
+
