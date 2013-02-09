@@ -1,13 +1,14 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>tweet-wall Admin Panel</title>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="files/style.css"/>
+</head>
 <body>
-<h1>tWEET-wALL</h1>
-
-<ul id="broadcast-msg"></ul>
-
-<!-- Include the socket.io javascript on the client side -->
-<script src="http://localhost:8000/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery.min.js"></script>
-
 <script>
 
     // Establish the connection with the server
@@ -15,15 +16,25 @@
 
     // on every message recived we print the new datas inside the #broadcast-msg div
     socket.on('broadcast_msg', function (data) {
-        //this can be a template
+
+
         var msg =
-                '<li id="' + data.id_str + '">' +
-                        '<span class="image">' +
-                        '<img src="' + data.user.profile_image_url + '"/>' +
-                        '</span>' +
-                        '<span class="text">' + data.text + '</span>' +
-                        '<span class="screenName">' + ' @' + data.user.screen_name + '	' + '</span>' +
-                        '<span class="button">Approve</span>' +
+                '<li id="' + data.id_str + ' " class="tweet">' +
+                        '<div class="left">' +
+                        '<div class="profileimg">' +
+                        '<img src="' + data.user.profile_image_url + '" alt="" />' +
+                        '</div>' +
+                        '<div class="tw-username">' + ' @' + data.user.screen_name + '	' + '<em>@</em></div>' +
+                        '<div class="newtweet"><p>' + data.text + '</p></div>' +
+                        '</div>' +
+                        '<div class="right">' +
+                        '<div class="apply">' +
+                        '<a class="approve" href=""><img src="files/apply.png" alt="" /></a>' +
+                        '</div>' +
+                        '<div class="ignore">' +
+                        '<a class="remove" href=""><img src="files/ignore.png" alt="" /></a>' +
+                        '</div>' +
+                        '</div>' +
                         '</li>';
 
         $('#broadcast-msg').prepend(msg);
@@ -31,15 +42,44 @@
     });
 
     // Create a new socket connection
+    // Create a new socket connection
     socket.on('connect', function () {
         $(document)
-        	.on("click", ".button", function () {
-		            var parent = $(this).parent()[0];
-		            var node = $(parent);
-		            socket.emit('emit_msg', node.context.id);
-		        }
-	        );
+                .on("click", ".approve", function () {
+                    var parent = $(this).parent().parent().parent()[0];
+                    var node = $(parent);
+                    socket.emit('emit_msg', node.context.id);
+                }
+        );
     });
 </script>
+<div class="container">
+    <div class="header">
+        <div class="left"><img src="files/logo.png" alt=""/></div>
+    </div>
+    <div class="clear"></div>
+    <div class="middle">
+        <div class="top">
+            <div class="bluebutton">
+                <a href="">
+                    <div class="left"></div>
+                    <div class="center">Moderation Queue</div>
+                    <div class="right"></div>
+                </a>
+            </div>
+            <div class="bluebutton">
+                <a href="">
+                    <div class="left"></div>
+                    <div class="center">tweet-wall</div>
+                    <div class="right"></div>
+                </a>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="bottom">
+            <ul id="broadcast-msg"></ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
