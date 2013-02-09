@@ -1,0 +1,194 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&subset=latin);
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+body {
+	background:url(bg.png) repeat-x left top #3c8fc9;
+}
+.container {
+	width:700px;
+	margin:0 auto;
+}
+.header {
+	height:40px;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.header .left {
+	margin-left:15px;
+}
+.header .right {
+	color:#fff;
+	padding:12px;
+	font:12px Arial,Helvetica,Verdana;
+	margin-right:10px;
+}
+.header a {
+	color:#fff;
+	text-decoration:none;
+}
+.header a:hover {
+	color:#5da2d2;
+}
+.middle {
+	background:url(middle-bg.png) repeat left top;
+	display:inline-block;
+}
+.middle .top {
+	display:block;
+	width:680px;
+	margin:0 10px;
+}
+.bluebutton {
+	display:block;
+	height:36px;
+	float:left;
+	margin:10px 5px 5px 5px;
+}
+.bluebutton a {
+	color:#fff;
+	text-decoration:none;
+	font:12px Arial,Helvetica,Verdana;
+}
+.bluebutton .left {
+	background: url(btnleft.png) no-repeat left top;
+	width:8px;
+	height:36px;
+	float:left;
+}
+.bluebutton .center {
+	background: url(btnmiddle.png) repeat-x left top;
+	height:36px;
+	float:left;
+	padding:10px 5px;
+}
+.bluebutton .right {
+	background: url(btnright.png) no-repeat right top;
+	width:8px;
+	height:36px;
+	float:left;
+}
+.bluebutton:hover .left {
+	background: url(btnlefthvr.png) no-repeat left top;
+}
+.bluebutton:hover .center {
+	background: url(btnmiddlehvr.png) repeat-x left top;
+}
+.bluebutton:hover .right {
+	background: url(btnrighthvr.png) no-repeat left top;
+}
+#bottom {
+	width:670px;
+	margin:0 auto;
+}
+.tweet {
+	display:inline-block;
+	margin:5px 0;
+}.tweet:last-child {
+	display:inline-block;
+	margin:5px 0 50px 0;
+}
+.tweet .left {
+	width:622px;
+	height:88px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background:#fff;
+	border:1px solid #6fa0c3;
+	float:left;
+	position:relative;
+}
+.tweet .left .profileimg {
+	margin:8px;
+	float:left;
+	display:block;
+}
+.tweet .left .tw-username {
+	position:absolute;
+	top: 10px;
+	left: 90px;
+	color:#252525;
+	font:12px Verdana,Arial, Helvetica;
+	font-weight:bold;
+}
+.tweet .left .tw-username em {
+	color:#c6c6c6;
+}
+.tweet .left .newtweet {
+	position:absolute;
+	top: 30px;
+	left: 90px;
+	background:url(newtweetbg.png) no-repeat left top;
+	width:512px;
+	height:48px;
+}
+.tweet .left .newtweet p {
+	font:12px Verdana,Arial, Helvetica;
+	padding: 10px 10px 15px 15px;
+} 
+.tweet .right {
+	width:35px;
+	float:right;
+	margin:0 0 0 10px;
+}
+.tweet .right .apply {
+	padding:4px 0 3.5px;
+}
+.tweet .right .ignore {
+	padding:4.5px 0 5px 0;
+}
+.loginbox {
+	display:block;
+	width:307px;
+	height:183px;
+	margin: 75px auto;
+	position:relative;
+	background:url(login-bg.png);
+}
+.loginbox .bluebutton {
+	position:absolute;
+	bottom: 11px;
+	right: 3px;
+}
+.loginbox input {
+	width: 230px;
+	height: 32px;
+	border: none;
+	position: absolute;
+	bottom: 18px;
+	left: 13px;
+	background:none;
+	text-indent:10px;
+}
